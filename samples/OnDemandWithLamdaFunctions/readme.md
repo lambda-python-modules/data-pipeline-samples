@@ -3,10 +3,6 @@
 The following Python code defines an AWS Lamda function to run an ondemand pipeline. This code is in a file called lamda_function.py. You simply need to set the ``pipeline_id`` variable with the id of your on-demand pipeline.
 
 ```python
-from __future__ import print_function
-
-import json
-import urllib
 import boto3
 
 print('Loading function')
@@ -15,12 +11,8 @@ client = boto3.client('datapipeline')
 pipeline_id = 'df-123456789'
 
 def lambda_handler(event, context):
-    try:
-        response = client.activate_pipeline(pipelineId=pipeline_id)
-        return response
-    except Exception as e:
-        print(e)
-        raise e
+    response = client.activate_pipeline(pipelineId=pipeline_id)
+    return response
 ```
 ### Step 1: Create the on-demand pipeline
 *Make sure the pipeline is created in a region that supports Lamda.*
